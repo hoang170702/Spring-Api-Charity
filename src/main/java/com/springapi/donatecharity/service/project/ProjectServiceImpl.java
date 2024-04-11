@@ -1,7 +1,6 @@
 package com.springapi.donatecharity.service.project;
 
-import com.google.gson.Gson;
-import com.springapi.donatecharity.configuration.Gson.GsonConfig;
+
 import com.springapi.donatecharity.dto.CharityProjectDto;
 import com.springapi.donatecharity.models.CharityProject;
 import com.springapi.donatecharity.repository.ProjectRepository;
@@ -65,5 +64,21 @@ public class ProjectServiceImpl implements ProjectService{
         }catch (Exception e){
             log.error("Failed to delete charity project"+ e.getMessage());
         }
+    }
+
+    @Override
+    public CharityProject update(CharityProject charityProject) {
+        try {
+                this.projectRepository.updateCharityProjectById(
+                       charityProject.getId(),
+                       charityProject.getProjectName(),
+                       charityProject.getExpectTotalMoney(),
+                       charityProject.getCurrentMoney()
+               );
+            return charityProject;
+        }catch (Exception e){
+            log.error("Can't update project name: "+e.getMessage());
+        }
+        return null;
     }
 }

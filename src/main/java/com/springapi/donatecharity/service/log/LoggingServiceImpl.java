@@ -46,7 +46,7 @@ public class LoggingServiceImpl implements LoggingService {
                         .append("{")
                             .append(GsonParserUtils.parseObjectToString("data"))
                             .append(":")
-                            .append(GsonParserUtils.parseObjectToString(body))
+                            .append(body)
                         .append("}")
 
                 .append("}")

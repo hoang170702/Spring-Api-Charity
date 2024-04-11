@@ -19,13 +19,22 @@ public class ProjectController {
 
     @GetMapping("/get-all")
     public ResponseEntity<List<CharityProject>> getAllProject(){
-        List<CharityProject> charityProjects = this.projectService.getAll();
-        return ResponseEntity.status(HttpStatus.OK).body(charityProjects);
+        return ResponseEntity.status(HttpStatus.OK).body(this.projectService.getAll());
     }
 
     @PostMapping("/add-project")
     public ResponseEntity<String> getAllProject(@RequestBody CharityProjectDto charityProjectDto){
         this.projectService.addProject(charityProjectDto);
         return ResponseEntity.status(HttpStatus.OK).body("Add new project successfully");
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<CharityProject> getCharityProject(@PathVariable("id") int projectId){
+        return ResponseEntity.status(HttpStatus.OK).body(this.projectService.get(projectId));
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<CharityProject> updateProject(@RequestBody CharityProject charityProject){
+        return ResponseEntity.status(HttpStatus.OK).body(this.projectService.update(charityProject));
     }
 }

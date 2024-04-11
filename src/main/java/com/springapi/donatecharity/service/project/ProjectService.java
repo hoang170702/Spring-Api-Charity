@@ -11,4 +11,6 @@ public interface ProjectService {
     List<CharityProject> getAll();
     void delete(int projectId);
 
+    CharityProject update(CharityProject charityProject);
+
 }
