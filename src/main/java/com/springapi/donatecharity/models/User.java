@@ -23,9 +23,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userId", nullable = false)
     private int id;
-
-    @UniqueElements(message = "User name is exist")
-    @Column(name = "username", unique = true, nullable = true)
+    
+    @Column(name = "username", unique = true)
     private String username;
 
     @Length(min = 6, message = "Password must be 6 to 20 character")
@@ -39,7 +38,7 @@ public class User {
     private String address;
 
     @Column(name = "TotalDonateMoney")
-    private BigDecimal totalDonateMoney = BigDecimal.valueOf(0);
+    private BigDecimal totalDonateMoney;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(

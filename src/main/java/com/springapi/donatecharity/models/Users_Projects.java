@@ -18,11 +18,13 @@ import java.time.LocalDateTime;
 public class Users_Projects {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "projectId", nullable = false)
     private CharityProject charityProject;
@@ -32,6 +34,11 @@ public class Users_Projects {
 
     @Column(name = "DonateMoney")
     private BigDecimal donateMoney;
+
+
+    private String phonenumber;
+
+    private String type;
 
 }
 

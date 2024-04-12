@@ -5,6 +5,7 @@ import com.springapi.donatecharity.dto.CharityProjectDto;
 import com.springapi.donatecharity.models.CharityProject;
 import com.springapi.donatecharity.service.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRange;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,5 +37,11 @@ public class ProjectController {
     @PutMapping("/update")
     public ResponseEntity<CharityProject> updateProject(@RequestBody CharityProject charityProject){
         return ResponseEntity.status(HttpStatus.OK).body(this.projectService.update(charityProject));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteProject(@PathVariable("id") int projectId){
+        this.projectService.delete(projectId);
+        return ResponseEntity.status(HttpStatus.OK).body("Delete project successfully - projectId: "+ projectId);
     }
 }
